@@ -1,8 +1,12 @@
 const cityForm = document.querySelector("form");
 const card = document.querySelector(".card");
 const details = document.querySelector(".details");
+const time = document.querySelector(".time");
+const icon = document.querySelector(".icon img");
 
 const updateUI = (data) => {
+  console.log(data);
+
   const { cityDetails, weather } = data;
 
   // update details
@@ -13,9 +17,25 @@ const updateUI = (data) => {
                     <span>&deg;C</span>
                 </div>`;
 
-  if (card.classList.contains("d-none")){
+  let timeSrc = null;
+
+  // weather.IsDayTime ? (timeSrc = "img/day.svg") : (timeSrc = "img/night.svg");
+  timeSrc = weather.IsDayTime ? "img/day.svg" : "img/night.svg";
+
+  // if (weather.IsDayTime) {
+  //   timeSrc = "img/day.svg";
+  // } else {
+  //   timeSrc = "img/night.svg";
+  // }
+
+  time.setAttribute("src", timeSrc);
+
+  let iconSrc = `img/icons/${weather.WeatherIcon}.svg`;
+  icon.setAttribute("src", iconSrc);
+
+  if (card.classList.contains("d-none")) {
     card.classList.toggle("d-none");
-  } 
+  }
 };
 
 const updateCity = async (city) => {
@@ -37,5 +57,3 @@ cityForm.addEventListener("submit", (e) => {
     .then((data) => updateUI(data))
     .catch((err) => console.log(err));
 });
-
- 
