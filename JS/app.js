@@ -7,13 +7,18 @@ cityForm.addEventListener("submit", (e) => {
 
   cityForm.reset();
 
-  // updata the url with new city
-
-  updateCity(city);
+  // updata the ui with new city
+  updateCity(city)
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err));
 });
 
 const updateCity = async (city) => {
   const cityDetails = await getCity(city);
-  const weather = await getConditions(cityDetails.Key)
-  console.log(weather);
+  const weather = await getConditions(cityDetails.Key);
+  //   console.log(weather);
+  return {
+    cityDetails: cityDetails,
+    weather: weather,
+  };
 };
