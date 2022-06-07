@@ -65,8 +65,8 @@ cityForm.addEventListener("submit", (e) => {
 });
 
 
-// const city = localStorage.getItem("city");
+const city = localStorage.getItem("city");
 
-if (localStorage.getItem("city")) {
+if (city) {
   refresh(city);
 }
