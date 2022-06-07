@@ -45,6 +45,12 @@ const updateCity = async (city) => {
   return { cityDetails, weather };
 };
 
+const refresh = (city) => {
+  updateCity(city)
+    .then((data) => updateUI(data))
+    .catch((err) => console.log(err));
+};
+
 cityForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -58,11 +64,6 @@ cityForm.addEventListener("submit", (e) => {
   refresh(city);
 });
 
-const refresh = (city) => {
-  updateCity(city)
-    .then((data) => updateUI(data))
-    .catch((err) => console.log(err));
-};
 
 // const city = localStorage.getItem("city");
 
