@@ -50,10 +50,22 @@ cityForm.addEventListener("submit", (e) => {
 
   const city = cityForm.city.value.trim();
 
+  localStorage.setItem("city", city);
+
   cityForm.reset();
 
   // updata the ui with new city
+  refresh(city);
+});
+
+const refresh = (city) => {
   updateCity(city)
     .then((data) => updateUI(data))
     .catch((err) => console.log(err));
-});
+};
+
+const city = localStorage.getItem("city");
+
+if (city) {
+  refresh(city);
+}
