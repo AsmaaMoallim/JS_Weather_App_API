@@ -64,8 +64,8 @@ const refresh = (city) => {
     .catch((err) => console.log(err));
 };
 
-const city = localStorage.getItem("city");
+// const city = localStorage.getItem("city");
 
-if (city) {
+if (localStorage.getItem("city")) {
   refresh(city);
 }
